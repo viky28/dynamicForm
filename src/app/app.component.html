@@ -1,0 +1,39 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="form" (submit)="submit()">
+        <div class="card">
+          <app-user [userFormData]="form.controls.userFormData"></app-user>
+          <div class="card-header">Contact Information</div>
+          <div class="card-body" formArrayName="contacts">
+            <div class="row">
+              <div class="col-12" *ngFor="let contact of contactFormGroup.controls; let i = index;">
+                <div [formGroupName]="i" class="row">
+
+                  <div class="form-group col-4">
+                    <label>Key</label>
+                    <input class="form-control" formControlName="key" type="text">
+                  </div>
+
+                  <div class="form-group col-4">
+                    <label>Value</label>
+                    <input class="form-control" formControlName="value" type="text">
+                  </div>
+                  <div class="form-group col-4 remove">
+                    <button class="btn btn-danger" type="button" (click)="removeContact(i)"> <span class="glyphicon glyphicon-trash"></span>Remove </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="col-12">
+              <button class="btn btn-primary m-1" type="button" (click)="addContact()"> Add Position </button>
+              <button class="btn btn-success m-1" type="submit"> Save User Profile </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
